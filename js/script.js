@@ -44,3 +44,45 @@ function allScripts() {
   };
   tabsParent.addEventListener("click", showExactTabcontentById);
 }
+
+//Timer
+
+const givenDeadline = new Date("2023-07-26");
+
+function getData(deadline) {
+  const now = new Date();
+  timer = deadline - now;
+  const days = Math.floor(timer / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timer / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((timer / (1000 * 60)) % 60);
+  const seconds = Math.floor((timer / 1000) % 60);
+  return {
+    timer,
+    days,
+    hours,
+    minutes,
+    seconds,
+  };
+}
+
+function wrapToZero(number) {
+  if (number > 0 && number < 10) {
+    return `0${number}`;
+  } else return number;
+}
+
+function setCountdown() {
+  const days = document.querySelector("#days"),
+    hours = document.querySelector("#hours"),
+    minutes = document.querySelector("#minutes"),
+    seconds = document.querySelector("#seconds");
+
+  setInterval(() => {
+    const allDates = getData(givenDeadline);
+    days.textContent = wrapToZero(allDates.days);
+    hours.textContent = wrapToZero(allDates.hours);
+    minutes.textContent = wrapToZero(allDates.minutes);
+    seconds.textContent = wrapToZero(allDates.seconds);
+  }, [1000]);
+}
+setCountdown();
