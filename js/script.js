@@ -3,8 +3,18 @@ let classesToAdd = ["show", "fade"];
 function allScripts() {
   const tabsParent = document.querySelector(".tabheader__items"),
     tabs = document.querySelectorAll(".tabheader__item"),
-    tabsContent = document.querySelectorAll(".tabcontent");
+    tabsContent = document.querySelectorAll(".tabcontent"),
+    loader = document.querySelector(".loader");
 
+  //Loader
+  setTimeout(() => {
+    loader.style.opacity = 0;
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, [500]);
+  }, [2000]);
+
+  //Tab
   const hideContent = () => {
     tabs.forEach((item) => item.classList.remove("tabheader__item_active"));
     tabsContent.forEach((item) => {
